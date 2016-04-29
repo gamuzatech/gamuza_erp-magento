@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * Gamuza ERP - ERP support for magento platform.
+ * Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * Author: Eneias Ramos de Melo <eneias@gamuza.com.br>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ */
+
+/*
+ * See the AUTHORS file for a list of people on the Gamuza Team.
+ * See the ChangeLog files for a list of changes.
+ * These files are distributed with gamuza_erp-magento at http://github.com/gamuzabrasil/.
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <erp_info translate="title" module="erp">
+                <title>Info</title>
+                <acl>erp/info</acl>
+                <model>erp/info_api</model>
+                <methods>
+                    <module_version translate="title" module="erp">
+                        <title>Retrieve module version</title>
+                        <acl>erp/info/module_version</acl>
+                    </module_version>
+                    <store_name translate="title" module="erp">
+                        <title>Retrieve store name</title>
+                        <acl>erp/info/store_name</acl>
+                    </store_name>
+                    <store_phone translate="title" module="erp">
+                        <title>Retrieve store phone</title>
+                        <acl>erp/info/store_phone</acl>
+                    </store_phone>
+                    <store_address translate="title" module="erp">
+                        <title>Retrieve store address</title>
+                        <acl>erp/info/store_address</acl>
+                    </store_address>
+                </methods>
+            </erp_info>
+            <erp_website translate="title" module="erp">
+                <title>Website</title>
+                <acl>erp/website</acl>
+                <model>erp/core_website_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve websites</title>
+                        <acl>erp/website/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                </methods>
+            </erp_website>
+            <erp_store_group translate="title" module="erp">
+                <title>Store Group</title>
+                <acl>erp/store_group</acl>
+                <model>erp/core_store_group_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve store groups</title>
+                        <acl>erp/store_group/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                </methods>
+            </erp_store_group>
+            <erp_store translate="title" module="erp">
+                <title>Store</title>
+                <acl>erp/store</acl>
+                <model>erp/core_store_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve stores</title>
+                        <acl>erp/store/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                </methods>
+            </erp_store>
+            <erp_attribute translate="title" module="erp">
+                <title>Product Attribute</title>
+                <acl>erp/attribute</acl>
+                <model>erp/eav_entity_attribute_api</model>
+                <methods>
+                    <create translate="title" module="erp">
+                        <title>Create attributes</title>
+                        <acl>erp/attribute/create</acl>
+                        <method>erp_create</method>
+                    </create>
+                </methods>
+            </erp_attribute>
+            <erp_category translate="title" module="erp">
+                <title>Category</title>
+                <acl>erp/category</acl>
+                <model>erp/catalog_category_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve categories</title>
+                        <acl>erp/category/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                    <create translate="title" module="erp">
+                        <title>Create categories</title>
+                        <acl>erp/category/create</acl>
+                        <method>erp_create</method>
+                    </create>
+                </methods>
+            </erp_category>
+            <erp_product translate="title" module="erp">
+                <title>Product</title>
+                <acl>erp/product</acl>
+                <model>erp/catalog_product_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve products</title>
+                        <acl>erp/product/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                    <create translate="title" module="erp">
+                        <title>Create products</title>
+                        <acl>erp/product/create</acl>
+                        <method>erp_create</method>
+                    </create>
+                </methods>
+            </erp_product>
+            <erp_stock translate="title" module="erp">
+                <title>Stock</title>
+                <acl>erp/stock</acl>
+                <model>erp/catalogInventory_stock_item_api</model>
+                <methods>
+                    <update translate="title" module="erp">
+                        <title>Update stocks</title>
+                        <acl>erp/stock/update</acl>
+                        <method>erp_update</method>
+                    </update>
+                </methods>
+            </erp_stock>
+            <erp_customer_group translate="title" module="erp">
+                <title>Customer Group</title>
+                <acl>erp/customer_group</acl>
+                <model>erp/customer_group_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve customer groups</title>
+                        <acl>erp/customer_group/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                </methods>
+            </erp_customer_group>
+            <erp_customer translate="title" module="erp">
+                <title>Customer</title>
+                <acl>erp/customer</acl>
+                <model>erp/customer_customer_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve customers</title>
+                        <acl>erp/customer/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                </methods>
+            </erp_customer>
+            <erp_customer_address translate="title" module="erp">
+                <title>Customer Address</title>
+                <acl>erp/customer_address</acl>
+                <model>erp/customer_address_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve customer addresses</title>
+                        <acl>erp/customer_address/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                </methods>
+            </erp_customer_address>
+            <erp_order translate="title" module="erp">
+                <title>Order</title>
+                <acl>erp/order</acl>
+                <model>erp/sales_order_api</model>
+                <methods>
+                    <list translate="title" module="erp">
+                        <title>Retrieve sales orders</title>
+                        <acl>erp/order/list</acl>
+                        <method>erp_items</method>
+                    </list>
+                    <add_comment translate="title" module="erp">
+                        <title>Add orders status comments</title>
+                        <acl>erp/order/add_comment</acl>
+                        <method>erp_add_comment</method>
+                    </add_comment>
+                    <cancel translate="title" module="erp">
+                        <title>Cancel orders</title>
+                        <acl>erp/order/cancel</acl>
+                        <method>erp_cancel</method>
+                    </cancel>
+                </methods>
+            </erp_order>
+            <erp_invoice translate="title" module="erp">
+                <title>Invoice</title>
+                <acl>erp/invoice</acl>
+                <model>erp/sales_order_invoice_api</model>
+                <methods>
+                    <create translate="title" module="erp">
+                        <title>Create invoices</title>
+                        <acl>erp/invoice/create</acl>
+                        <method>erp_create</method>
+                    </create>
+                </methods>
+            </erp_invoice>
+            <erp_shipment translate="title" module="erp">
+                <title>Shipment</title>
+                <acl>erp/shipment</acl>
+                <model>erp/sales_order_shipment_api</model>
+                <methods>
+                    <create translate="title" module="erp">
+                        <title>Create shipments</title>
+                        <acl>erp/shipment/create</acl>
+                        <method>erp_create</method>
+                    </create>
+                </methods>
+            </erp_shipment>
+            <erp_creditmemo translate="title" module="erp">
+                <title>Creditmemo</title>
+                <acl>erp/creditmemo</acl>
+                <model>erp/sales_order_creditmemo_api</model>
+                <methods>
+                    <create translate="title" module="erp">
+                        <title>Create creditmemos</title>
+                        <acl>erp/creditmemo/create</acl>
+                        <method>erp_create</method>
+                    </create>
+                </methods>
+            </erp_creditmemo>
+        </resources>
+        <acl>
+            <resources>
+                <erp translate="title" module="erp">
+                    <title>Gamuza ERP API</title>
+                    <sort_order>2000</sort_order>
+                    <info translate="title" module="erp">
+                        <title>Info</title>
+                        <sort_order>2100</sort_order>
+                        <module_version translate="title" module="erp">
+                            <title>Retrieve module version</title>
+                        </module_version>
+                        <store_name translate="title" module="erp">
+                            <title>Retrieve store name</title>
+                        </store_name>
+                        <store_phone translate="title" module="erp">
+                            <title>Retrieve store phone</title>
+                        </store_phone>
+                        <store_address translate="title" module="erp">
+                            <title>Retrieve store address</title>
+                        </store_address>
+                    </info>
+                    <website translate="title" module="erp">
+                        <title>Website</title>
+                        <sort_order>2200</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve websites</title>
+                        </list>
+                    </website>
+                    <store_group translate="title" module="erp">
+                        <title>Store Group</title>
+                        <sort_order>2300</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve store groups</title>
+                        </list>
+                    </store_group>
+                    <store translate="title" module="erp">
+                        <title>Store</title>
+                        <sort_order>2400</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve stores</title>
+                        </list>
+                    </store>
+                    <attribute translate="title" module="erp">
+                        <title>Attribute</title>
+                        <sort_order>2500</sort_order>
+                        <create translate="title" module="erp">
+                            <title>Create attributes</title>
+                        </create>
+                    </attribute>
+                    <category translate="title" module="erp">
+                        <title>Category</title>
+                        <sort_order>2600</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve categories</title>
+                        </list>
+                        <create translate="title" module="erp">
+                            <title>Create categories</title>
+                        </create>
+                    </category>
+                    <product translate="title" module="erp">
+                        <title>Product</title>
+                        <sort_order>2700</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve products</title>
+                        </list>
+                        <create translate="title" module="erp">
+                            <title>Create products</title>
+                        </create>
+                    </product>
+                    <stock translate="title" module="erp">
+                        <title>Stock</title>
+                        <sort_order>2800</sort_order>
+                        <update translate="title" module="erp">
+                            <title>Update stocks</title>
+                        </update>
+                    </stock>
+                    <customer_group translate="title" module="erp">
+                        <title>Customer Group</title>
+                        <sort_order>2900</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve customer groups</title>
+                        </list>
+                    </customer_group>
+                    <customer translate="title" module="erp">
+                        <title>Customer</title>
+                        <sort_order>3000</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve customers</title>
+                        </list>
+                    </customer>
+                    <customer_address translate="title" module="erp">
+                        <title>Customer Address</title>
+                        <sort_order>3100</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve customer addresses</title>
+                        </list>
+                    </customer_address>
+                    <order translate="title" module="erp">
+                        <title>Order</title>
+                        <sort_order>3200</sort_order>
+                        <list translate="title" module="erp">
+                            <title>Retrieve orders</title>
+                            <sort_order>10</sort_order>
+                        </list>
+                        <add_comment translate="title" module="erp">
+                            <title>Add orders status comments</title>
+                            <sort_order>20</sort_order>
+                        </add_comment>
+                        <cancel translate="title" module="erp">
+                            <title>Cancel orders</title>
+                            <sort_order>30</sort_order>
+                        </cancel>
+                    </order>
+                    <invoice translate="title" module="erp">
+                        <title>Invoice</title>
+                        <sort_order>3300</sort_order>
+                        <create translate="title" module="erp">
+                            <title>Create invoices</title>
+                        </create>
+                    </invoice>
+                    <shipment translate="title" module="erp">
+                        <title>Shipment</title>
+                        <sort_order>3400</sort_order>
+                        <create translate="title" module="erp">
+                            <title>Create shipments</title>
+                        </create>
+                    </shipment>
+                    <creditmemo translate="title" module="erp">
+                        <title>Creditmemo</title>
+                        <sort_order>3400</sort_order>
+                        <create translate="title" module="erp">
+                            <title>Create creditmemos</title>
+                        </create>
+                    </creditmemo>
+                </erp>
+            </resources>
+        </acl>
+    </api>
+</config>
+

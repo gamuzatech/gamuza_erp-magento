@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * Gamuza ERP - ERP support for magento platform.
+ * Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * Author: Eneias Ramos de Melo <eneias@gamuza.com.br>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ */
+
+/*
+ * See the AUTHORS file for a list of people on the Gamuza Team.
+ * See the ChangeLog files for a list of changes.
+ * These files are distributed with gamuza_erp-magento at http://github.com/gamuzabrasil/.
+ */
+-->
+
+<config>
+    <tabs>
+        <gamuza translate="label" module="erp">
+            <label>Gamuza</label>
+            <sort_order>0</sort_order>
+        </gamuza>
+    </tabs>
+    <sections>
+        <erp translate="label" module="erp">
+            <label>ERP</label>
+            <tab>gamuza</tab>
+            <sort_order>0</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <settings translate="label">
+                    <label>Settings</label>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <crypt_key translate="label">
+                            <label>Crypt key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Crypt key</comment>
+                        </crypt_key>
+                    </fields>
+                </settings>
+                <attributes_set translate="label">
+                    <label>Attributes set</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <auto_create translate="label">
+                            <label>Auto create</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>0</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Auto create attributes set</comment>
+                        </auto_create>
+                        <use_default translate="label">
+                            <label>Use default</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>erp/adminhtml_system_config_source_attributes_set</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Use default attributes set to products</comment>
+                            <depends><auto_create>0</auto_create></depends>
+                        </use_default>
+                        <associations translate="label">
+                            <label>Associations</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>2</sort_order>
+                            <source_model>erp/adminhtml_system_config_source_attributes_product_configurable</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Attributes sets and configurable attributes used in associations of products</comment>
+                        </associations>
+                    </fields>
+                </attributes_set>
+                <attributes translate="label">
+                    <label>Attributes</label>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <use_alternative translate="label">
+                            <label>Use alternative</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Use alternative attributes for Category and Product IDs</comment>
+                        </use_alternative>
+                        <category_id translate="label">
+                            <label>Category ID</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>erp/adminhtml_system_config_source_attributes_category</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Attribute for category ID</comment>
+                            <depends><use_alternative>1</use_alternative></depends>
+                        </category_id>
+                        <product_id translate="label">
+                            <label>Product ID</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>erp/adminhtml_system_config_source_attributes_product</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Attribute for product ID</comment>
+                            <depends><use_alternative>1</use_alternative></depends>
+                        </product_id>
+                    </fields>
+                </attributes>
+            </groups>
+        </erp>
+    </sections>
+</config>
+

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * Gamuza ERP - ERP support for magento platform.
+ * Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * Author: Eneias Ramos de Melo <eneias@gamuza.com.br>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ */
+
+/*
+ * See the AUTHORS file for a list of people on the Gamuza Team.
+ * See the ChangeLog files for a list of changes.
+ * These files are distributed with gamuza_erp-magento at http://github.com/gamuzabrasil/.
+ */
+-->
+
+<config>
+    <modules>
+        <Gamuza_ERP>
+            <version>0.0.1</version>
+        </Gamuza_ERP>
+    </modules>
+    <global>
+        <helpers>
+            <erp>
+                <class>Gamuza_ERP_Helper</class>
+            </erp>
+        </helpers>
+        <blocks>
+            <erp>
+                <class>Gamuza_ERP_Block</class>
+            </erp>
+        </blocks>
+        <models>
+            <erp>
+                <class>Gamuza_ERP_Model</class>
+                <resourceModel>erp_mysql4</resourceModel>
+            </erp>
+            <erp_mysql4>
+                <class>Gamuza_ERP_Model_Mysql4</class>
+                <entities>
+                    <products_associations>
+                        <table>gamuza_erp_products_associations</table>
+                    </products_associations>
+                </entities>
+            </erp_mysql4>
+            <core_resource>
+                <rewrite>
+                    <website>Gamuza_ERP_Model_Core_Resource_Website</website>
+                    <store_group>Gamuza_ERP_Model_Core_Resource_Store_Group</store_group>
+                    <store>Gamuza_ERP_Model_Core_Resource_Store</store>
+                </rewrite>
+            </core_resource>
+            <customer_resource>
+                <rewrite>
+                    <group>Gamuza_ERP_Model_Customer_Resource_Group</group>
+                </rewrite>
+            </customer_resource>
+        </models>
+        <resources>
+            <erp_setup>
+                <setup>
+                    <module>Gamuza_ERP</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </erp_setup>
+            <erp_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </erp_write>
+            <erp_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </erp_read>
+        </resources>
+    </global>
+    <default>
+        <erp>
+            <attributes_set>
+                <auto_create>0</auto_create>
+                <use_default>4</use_default>
+            </attributes_set>
+            <attributes>
+                <category_id>erp_CodigoCategoriaProduto</category_id>
+                <product_id>erp_CodigoProduto</product_id>
+            </attributes>
+        </erp>
+        <api>
+            <config>
+                <charset>UTF-8</charset>
+                <session_timeout>86400</session_timeout>
+                <compliance_wsi>1</compliance_wsi>
+                <wsdl_cache_enabled>1</wsdl_cache_enabled>
+            </config>
+        </api>
+    </default>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Gamuza_ERP>
+                    <files>
+                        <default>Gamuza_ERP.csv</default>
+                    </files>
+                </Gamuza_ERP>
+            </modules>
+        </translate>
+    </adminhtml>
+</config>
+

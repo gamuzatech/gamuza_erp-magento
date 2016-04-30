@@ -1,2 +1,235 @@
-# gamuza_erp-magento
-Gamuza ERP - Magento
+<h1>Módulo de Integração ERP</h1>
+
+**Compatível com a plataforma Magento CE versão 1.6 a 1.9**
+
+<img src="https://dl.dropboxusercontent.com/s/o1e82sr4y162lay/gamuza-erp-box.png" alt="" title="Gamuza ERP - Magento - Box" />
+
+<h2>Instalação</h2>
+
+*Atenção! Sempre faça um backup antes de realizar qualquer modificação! Sempre utilize o módulo em ambiente de testes primeiro!"*
+
+**Instalar usando o modgit:**
+
+    $ cd /path/to/magento
+    $ modgit init
+    $ modgit add gamuza_erp https://github.com/gamuzabrasil/gamuza_erp-magento.git
+
+**Instalação manual dos arquivos**
+
+Baixe a ultima versão aqui do pacote Gamuza_ERP-xxx.tbz2 e descompacte o arquivo baixado para dentro do diretório principal do Magento
+
+Limpe todos os caches em Sistema -> Gerenciamento de Cache
+
+<h2>Conhecendo o módulo</h2>
+
+**1 - Configurando os parâmetros da integração no Painel Administrativo**
+
+<img src="https://dl.dropboxusercontent.com/s/pdmo9yvtfl21w88/gamuza-erp-config-painel-admin.png" alt="" title="Gamuza ERP - Magento - Configurando os parâmetros da integração no Painel Administrativo" />
+
+**2 - Configurando os métodos disponíveis para o perfil do usuário no Webservice**
+
+<img src="https://dl.dropboxusercontent.com/s/rhvjoyaqsmym7ot/gamuza-erp-conf-perfil-webservice.png" alt="" title="Gamuza ERP - Magento - Configurando os métodos disponíveis para o perfil do usuário no Webservice" />
+
+<h2>Métodos</h2>
+
+**Obtendo informações da loja**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_info.module_version'); // Versão do módulo
+    
+    $result = $client->call ($session, 'erp_info.store_name'); // Nome da loja
+    
+    $result = $client->call ($session, 'erp_info.store_phone'); // Telefone da loja
+    
+    $result = $client->call ($session, 'erp_info.store_address'); // Endereço da loja
+    
+    $client->endSession ($session);
+
+**Obtendo lista de websites**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_website.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Ordenando listagem por data de criação e atualização, excluindo o website com o ID '0'.
+
+    $timestamp = '2016-04-30 01:12:56';
+    
+    $params = array ('main_table.created_at, main_table.updated_at' => array(
+        array ('gt' => $timestamp),
+        array ('gt' => $timestamp)
+      ),
+      'website_id' => array ('gt' => 0)
+    );
+
+**Obtendo lista de lojas**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_store_group.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Ordenando listagem por data de criação e atualização, excluindo a loja com o ID '0'.
+
+    $timestamp = '2016-04-30 01:17:34';
+    
+    $params = array ('main_table.created_at, main_table.updated_at' => array(
+        array ('gt' => $timestamp),
+        array ('gt' => $timestamp)
+      ),
+      'main_table.group_id' => array ('gt' => 0),
+    );
+
+**Obtendo lista de visões**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_store.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Ordenando listagem por data de criação e atualização, excluindo a visão com o ID '0'.
+
+    $timestamp = '2016-04-30 01:17:34';
+    
+    $params = array ('main_table.created_at, main_table.updated_at' => array(
+        array ('gt' => $timestamp),
+        array ('gt' => $timestamp)
+      ),
+      'store_id' => array ('gt' => 0)
+    );
+
+**Criando um atributo**
+
+*Os atributos e seus respectivos campos e valores serão automaticamente criados ou atualizados.*
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_attribute.create', array(array(
+      array(
+        'entity_type' => 'catalog_product',
+        'attribute_code' => 'color',
+        'scope' => 'global',
+        'add_option' => array(
+          array(
+            'default' => 1,
+            'order' => 0,
+            'label' => array(
+              array('store_code' => 'admin', 'value' => 'red')
+            )
+          ),
+          array(
+            'order' => 1,
+            'label' => array(
+              array('store_code' => 'admin', 'value' => 'green')
+            )
+          ),
+          array(
+            'order' => 2,
+            'label' => array(
+              array('store_code' => 'admin', 'value' => 'blue')
+            )
+          )
+        )
+      )
+    )));
+    
+    $client->endSession ($session);
+
+**Obtendo lista de produtos**
+
+*Este método retorna uma listagem de produtos com todos os websites, categorias e atributos vinculados e seus respectivos valores*
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'product.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Ordenando listagem por data de criação e atualização, ordernação por data de criação e atualização e limite.
+
+    $timestamp = '2016-04-30 01:22:53';
+    $limit = 10;
+    
+    $filters = array(
+      'or' => array(
+        array ('attribute' => 'created_at', 'gt' => $gmt_timestamp),
+        array ('attribute' => 'updated_at', 'gt' => $gmt_timestamp)
+      )
+    );
+    
+    $params = array(
+      $filters,
+      'order' => array ('e.created_at ASC', 'e.updated_at ASC'),
+      'limit' => $limit
+    );
+
+**Criando produtos**
+
+*Os produtos e seus respectivos campos, valores e associações serão automaticamente criados ou atualizados.*
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_product.create', array(array(
+        array(
+            'type_id' => 'configurable',
+            'sku' => 'teste1',
+            'name' => 'teste1',
+            'price' => 199.99,
+            'status' => 2,
+            'website_codes' => array ('base'),
+            'store_codes' => array ('default'),
+            'category_codes' => array(),
+        ),
+        array(
+            'type_id' => 'simple',
+            'parent_sku' => 'teste1',
+            'sku' => 'teste2',
+            'name' => 'teste2',
+            'price' => 299.99,
+            'status' => 2,
+            'website_codes' => array ('base'),
+            'store_codes' => array ('default'),
+            'category_codes' => array (),
+            'color' => 'red',
+            'media_gallery_upload' => true,
+            'media_gallery' => array(
+                'images' => array(
+                    array(
+                        'type' => 'thumbnail',
+                        'content' => base64_encode('/home/eneias/Desktop/produto.png'),
+                        'mime' => 'image/png',
+                    ),
+                ),
+            ),
+        ),
+    )));
+
+    $client->endSession ($session);
+

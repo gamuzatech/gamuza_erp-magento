@@ -225,6 +225,8 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
             )
         ),
     )));
+    
+    $client->endSession ($session);
 
 **Obtendo lista de produtos**
 
@@ -301,6 +303,25 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
                 ),
             ),
         ),
+    )));
+
+    $client->endSession ($session);
+
+**Atualizando quantidade em estoque dos produtos**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+
+    $result = $client->call($session, 'erp_stock.update', array(array(
+        array(
+            'erp_CodigoProduto' => 123, // Codigo ERP
+            'qty' => 150,
+        ),
+        array(
+            'erp_CodigoProduto' => 456, // Codigo ERP
+            'qty' => 250,
+        )
     )));
 
     $client->endSession ($session);

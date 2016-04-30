@@ -326,3 +326,53 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
 
     $client->endSession ($session);
 
+**Obtendo lista de grupos de clientes**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_customer_group.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Filtrando listagem por data de criação e atualização, excluindo o grupo de cliente com o ID = 0
+
+    $timestamp = '2016-04-30 20:31:29';
+    
+    $params = array ('created_at, updated_at' => array(
+        array ('gt' => $timestamp),
+        array ('gt' => $timestamp)
+      ),
+      'customer_group_id' => array ('gt' => 0)
+    );
+
+**Obtendo lista de clientes**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_customer.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Filtrando listagem por data de criação e atualização, ordenando por data de criação e atualização, e aplicando limite.
+
+    $timestamp = '2016-04-30 20:33:29';
+    
+    $filters = array(
+        'or' => array(
+            array ('attribute' => 'created_at', 'gt' => $timestamp),
+            array ('attribute' => 'updated_at', 'gt' => $timestamp)
+        )
+    );
+    
+    $params = array ($filters,
+        'order' => array ('e.created_at ASC', 'e.updated_at ASC'),
+        'limit' => 100
+    );

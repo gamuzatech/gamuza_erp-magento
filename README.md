@@ -376,3 +376,31 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
         'order' => array ('e.created_at ASC', 'e.updated_at ASC'),
         'limit' => 100
     );
+
+**Obtendo lista de endereços de clientes**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_customer_address.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Filtrando listagem por data de criação e atualização, ordenando por data de criação e atualização, e aplicando limite.
+
+    $timestamp = '2016-04-30 20:37:29';
+    
+    $filters = array(
+        'or' => array(
+            array ('attribute' => 'created_at', 'gt' => $timestamp),
+            array ('attribute' => 'updated_at', 'gt' => $timestamp)
+        )
+    );
+    
+    $params = array ($filters,
+        'order' => array ('e.created_at ASC', 'e.updated_at ASC'),
+        'limit' => 100
+    );

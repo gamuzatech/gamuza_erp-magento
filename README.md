@@ -60,7 +60,7 @@ Limpe todos os caches em Sistema -> Gerenciamento de Cache
 
 *Parâmetros:*
 
-Ex: Ordenando listagem por data de criação e atualização, excluindo o website com o ID '0'.
+Ex: Filtrando listagem por data de criação e atualização, excluindo o website com o ID = 0
 
     $timestamp = '2016-04-30 01:12:56';
     
@@ -83,7 +83,7 @@ Ex: Ordenando listagem por data de criação e atualização, excluindo o websit
 
 *Parâmetros:*
 
-Ex: Ordenando listagem por data de criação e atualização, excluindo a loja com o ID '0'.
+Ex: Filtrando listagem por data de criação e atualização, excluindo a loja com o ID = 0
 
     $timestamp = '2016-04-30 01:17:34';
     
@@ -106,7 +106,7 @@ Ex: Ordenando listagem por data de criação e atualização, excluindo a loja c
 
 *Parâmetros:*
 
-Ex: Ordenando listagem por data de criação e atualização, excluindo a visão com o ID '0'.
+Ex: Filtrando listagem por data de criação e atualização, excluindo a visão com o ID = 0
 
     $timestamp = '2016-04-30 01:17:34';
     
@@ -156,21 +156,91 @@ Ex: Ordenando listagem por data de criação e atualização, excluindo a visão
     
     $client->endSession ($session);
 
-**Obtendo lista de produtos**
+**Obtendo lista de categorias**
 
-*Este método retorna uma listagem de produtos com todos os websites, categorias e atributos vinculados e seus respectivos valores*
+*Este método retorna uma listagem de categorias com todos os produtos associados, atributos vinculados e seus respectivos valores*
 
     $client = new SoapClient ('http://magento/api/soap?wsdl=1');
     
     $session = $client->login ('user', 'pass');
     
-    $result = $client->call ($session, 'product.list', $params = null);
+    $result = $client->call ($session, 'erp_category.list', $params = null);
     
     $client->endSession ($session);
 
 *Parâmetros:*
 
-Ex: Ordenando listagem por data de criação e atualização, ordernação por data de criação e atualização e limite.
+Ex: Filtrando listagem por data de criação e atualização, ordenando por data de criação e atualização, aplicando limite e excluindo categoria com o ID = 0
+
+    $timestamp = '2016-04-30 19:34:31';
+    $limit = 10;
+    
+    $filters = array(
+      'entity_id' => array ('gt' => 1),
+      'or' => array(
+        array ('attribute' => 'created_at', 'gt' => $gmt_timestamp),
+        array ('attribute' => 'updated_at', 'gt' => $gmt_timestamp)
+      )
+    );
+    
+    $params = array(
+      $filters,
+      'order' => array ('e.created_at ASC', 'e.updated_at ASC'),
+      'limit' => $limit
+    );
+
+**Criando categorias**
+
+*As categorias e seus respectivos campos, valores, associações e produtos vinculados serão automaticamente criados ou atualizados.*
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call($session, 'erp_category.create', array(array(
+        array(
+            'store_code' => 'default',
+            'attribute_set_name' => 'Default',
+            'include_in_menu' => true,
+            'is_active' => true,
+            'name' => 'test',
+            'erp_CodigoCategoriaProduto' => 456, // Código ERP
+            'parent_erp_CodigoCategoriaProduto' => 123, // Código ERP para cat. pai
+            'assigned_products' => array(
+                '123' => 0, // Código ERP + ordenação
+                '456' => 1 // Código ERP + ordenação
+            )
+        ),
+        array(
+            'store_code' => 'default',
+            'attribute_set_name' => 'Default',
+            'include_in_menu' => true,
+            'is_active' => true,
+            'name' => 'test2',
+            'erp_CodigoCategoriaProduto' => 789, // Código ERP
+            'parent_erp_CodigoCategoriaProduto' => 456, // Código ERP para cat. pai
+            'assigned_products' => array(
+                '123' => 0, // Codigo ERP + ordenação
+                '456' => 1 // Codigo ERP + ordenação
+            )
+        ),
+    )));
+
+**Obtendo lista de produtos**
+
+*Este método retorna uma listagem de produtos com todos os websites, categorias, atributos vinculados e seus respectivos valores*
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_product.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Filtrando listagem por data de criação e atualização, ordenando por data de criação e atualização, e aplicando limite.
 
     $timestamp = '2016-04-30 01:22:53';
     $limit = 10;
@@ -190,7 +260,7 @@ Ex: Ordenando listagem por data de criação e atualização, ordernação por d
 
 **Criando produtos**
 
-*Os produtos e seus respectivos campos, valores e associações serão automaticamente criados ou atualizados.*
+*Os produtos e seus respectivos campos, valores, imagens e associações serão automaticamente criados ou atualizados.*
 
     $client = new SoapClient ('http://magento/api/soap?wsdl=1');
     
@@ -198,6 +268,7 @@ Ex: Ordenando listagem por data de criação e atualização, ordernação por d
     
     $result = $client->call ($session, 'erp_product.create', array(array(
         array(
+            'erp_CodigoProduto' => 123, Codigo ERP
             'type_id' => 'configurable',
             'sku' => 'teste1',
             'name' => 'teste1',
@@ -208,6 +279,7 @@ Ex: Ordenando listagem por data de criação e atualização, ordernação por d
             'category_codes' => array(),
         ),
         array(
+            'erp_CodigoProduto' => 456, // Codigo ERP
             'type_id' => 'simple',
             'parent_sku' => 'teste1',
             'sku' => 'teste2',

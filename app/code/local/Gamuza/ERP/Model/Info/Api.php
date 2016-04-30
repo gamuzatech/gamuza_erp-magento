@@ -50,7 +50,7 @@ public function store_address ()
     return $this->_getConfig ()->getStoreAddress ();
 }
 
-private function _getConfig ()
+protected function _getConfig ()
 {
     return Mage::getModel ('erp/config');
 }

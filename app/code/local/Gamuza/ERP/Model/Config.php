@@ -26,7 +26,7 @@
  * These files are distributed with gamuza_erp-magento at http://github.com/gamuzabrasil/.
  */
 
-class Gamuza_Sync_Model_Config
+class Gamuza_ERP_Model_Config
 {
 
 const XML_PATH_STORE_INFO_NAME = 'general/store_information/name';

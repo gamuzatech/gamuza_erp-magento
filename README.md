@@ -404,3 +404,40 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
         'order' => array ('e.created_at ASC', 'e.updated_at ASC'),
         'limit' => 100
     );
+
+**Obtendo lista de pedidos**
+
+Este método retorna uma listagem de pedidos incluindo informações sobre os itens e pagamento
+
+*Obs: As informações de pagamento serão criptografadas utilizando a chave salva no painel administrativo.*
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_order.list', $params = null);
+    
+    $client->endSession ($session);
+
+*Parâmetros:*
+
+Ex: Filtrando listagem por data de criação e atualização, ordenando por data de criação e atualização, e aplicando limite.
+
+    $timestamp = '2016-04-30 20:50:29';
+    $state = 'new';
+    $status = 'pending';
+    
+    $filters = array (
+        'state' => $state,
+        'status' => $status,
+        'created_at, updated_at' => array(
+            array ('gt' => $timestamp),
+            array ('gt' => $timestamp)
+        )
+    );
+    
+    $params = array ($filters,
+        'order' => array ('main_table.created_at ASC', 'main_table.updated_at ASC'),
+        'limit' => 100
+    );
+

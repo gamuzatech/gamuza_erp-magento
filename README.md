@@ -188,3 +188,48 @@ Ex: Ordenando listagem por data de criação e atualização, ordernação por d
       'limit' => $limit
     );
 
+**Criando produtos**
+
+*Os produtos e seus respectivos campos, valores e associações serão automaticamente criados ou atualizados.*
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_product.create', array(array(
+        array(
+            'type_id' => 'configurable',
+            'sku' => 'teste1',
+            'name' => 'teste1',
+            'price' => 199.99,
+            'status' => 2,
+            'website_codes' => array ('base'),
+            'store_codes' => array ('default'),
+            'category_codes' => array(),
+        ),
+        array(
+            'type_id' => 'simple',
+            'parent_sku' => 'teste1',
+            'sku' => 'teste2',
+            'name' => 'teste2',
+            'price' => 299.99,
+            'status' => 2,
+            'website_codes' => array ('base'),
+            'store_codes' => array ('default'),
+            'category_codes' => array (),
+            'color' => 'red',
+            'media_gallery_upload' => true,
+            'media_gallery' => array(
+                'images' => array(
+                    array(
+                        'type' => 'thumbnail',
+                        'content' => base64_encode('/home/eneias/Desktop/produto.png'),
+                        'mime' => 'image/png',
+                    ),
+                ),
+            ),
+        ),
+    )));
+
+    $client->endSession ($session);
+

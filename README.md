@@ -441,3 +441,35 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
         'limit' => 100
     );
 
+**Faturando pedidos**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_invoice.create', array(array(
+        array(
+            'invoice_order_increment_id' => 100000476,
+            'invoice_id' => 123, // Codigo ERP
+            'invoice_items_qty' => array(
+                array ('order_item_id' => 123, 'qty' => 10),
+                array ('order_item_id' => 456, 'qty' => 20),
+            ),
+            'invoice_comment' => 'Comentario para fatura',
+            'invoice_email' => 'E-mail para envio da fatura',
+            'invoice_include_comment' => true
+        ),
+        array(
+            'invoice_order_increment_id' => 100000477,
+            'invoice_id' => 456, // Codigo ERP
+            'invoice_items_qty' => array(
+                array ('order_item_id' => 789, 'qty' => 30),
+                array ('order_item_id' => 0123, 'qty' => 40),
+            ),
+            'invoice_comment' => 'Comentario para fatura',
+            'invoice_email' => 'E-mail para envio da fatura',
+            'invoice_include_comment' => true
+        )
+    )));
+
+    $client->endSession ($session);

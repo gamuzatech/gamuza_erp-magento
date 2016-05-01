@@ -2,6 +2,12 @@
 
 **Compatível com a plataforma Magento CE versão 1.6 a 1.9**
 
+Agora ficou mais fácil integrar o seu ERP com o Magento.
+
+Estendemos as funções mais importantes do Webservice do Magento para você integrar o seu ERP sem muitos problemas.
+
+Adicionamos várias funcionalidades interessantes como associação automática de categorias e produtos, produtos configuráveis e simples, valores para atributos, listagem completa de pedidos com suporte a criptografia, e muito mais! 
+
 <img src="https://dl.dropboxusercontent.com/s/o1e82sr4y162lay/gamuza-erp-box.png" alt="" title="Gamuza ERP - Magento - Box" />
 
 <h2>Instalação</h2>

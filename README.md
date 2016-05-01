@@ -441,6 +441,46 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
         'limit' => 100
     );
 
+**Adicionando comentário ao status dos pedidos**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_order.add_comment', array(array(
+        array(
+            'order_increment_id' => 100000476,
+            'is_customer_notified' => true,
+            'comment' => 'Comentário para o pedido',
+            'status' => 'status_para_pedido'
+        ),
+        array(
+            'order_increment_id' => 100000477,
+            'is_customer_notified' => true,
+            'comment' => 'Comentário para o pedido',
+            'status' => 'status_para_pedido'
+        )
+    )));
+    
+    $client->endSession ($session);
+
+**Cancelando pedidos**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_order.cancel', array(array(
+        array(
+            'order_increment_id' => 100000476,
+        ),
+        array(
+            'order_increment_id' => 100000477,
+        )
+    )));
+    
+    $client->endSession ($session);
+
 **Faturando pedidos**
 
     $client = new SoapClient ('http://magento/api/soap?wsdl=1');

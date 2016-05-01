@@ -473,3 +473,71 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
     )));
 
     $client->endSession ($session);
+
+**Enviando pedidos**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_shipment.create', array(array(
+        array(
+            'shipment_order_increment_id' => 100000476,
+            'shipment_id' => 123, // Codigo ERP
+            'shipment_items_qty' => array(
+                array ('order_item_id' => 123, 'qty' => 10),
+                array ('order_item_id' => 456, 'qty' => 20),
+            ),
+            'shipment_comment' => 'Comentario para envio',
+            'shipment_email' => 'E-mail para envio do envio',
+            'shipment_include_comment' => true
+        ),
+        array(
+            'shipment_order_increment_id' => 100000477,
+            'shipment_id' => 456, // Codigo ERP
+            'shipment_items_qty' => array(
+                array ('order_item_id' => 789, 'qty' => 30),
+                array ('order_item_id' => 0123, 'qty' => 40),
+            ),
+            'shipment_comment' => 'Comentario para envio',
+            'shipment_email' => 'E-mail para envio da envio',
+            'shipment_include_comment' => true
+        )
+    )));
+
+    $client->endSession ($session);
+
+**Devolvendo pedidos**
+
+    $client = new SoapClient ('http://magento/api/soap?wsdl=1');
+    
+    $session = $client->login ('user', 'pass');
+    
+    $result = $client->call ($session, 'erp_credimemo.create', array(array(
+        array(
+            'creditmemo_order_increment_id' => 100000476,
+            'creditmemo_id' => 123, // Codigo ERP
+            'creditmemo_items_qty' => array(
+                array ('order_item_id' => 123, 'qty' => 10),
+                array ('order_item_id' => 456, 'qty' => 20),
+            ),
+            'creditmemo_comment' => 'Comentario para envio',
+            'creditmemo_email' => 'E-mail para envio do envio',
+            'creditmemo_include_comment' => true,
+            'creditmemo_refund' => 100
+        ),
+        array(
+            'creditmemo_order_increment_id' => 100000477,
+            'creditmemo_id' => 456, // Codigo ERP
+            'creditmemo_items_qty' => array(
+                array ('order_item_id' => 789, 'qty' => 30),
+                array ('order_item_id' => 0123, 'qty' => 40),
+            ),
+            'creditmemo_comment' => 'Comentario para envio',
+            'creditmemo_email' => 'E-mail para envio da envio',
+            'creditmemo_include_comment' => true,
+            'creditmemo_refund' => 200
+        )
+    )));
+
+    $client->endSession ($session);

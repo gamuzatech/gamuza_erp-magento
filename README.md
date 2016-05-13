@@ -12,7 +12,7 @@ Adicionamos várias funcionalidades interessantes como associação automática 
 
 <h2>Instalação</h2>
 
-*Atenção! Sempre faça um backup antes de realizar qualquer modificação! Sempre utilize o módulo em ambiente de testes primeiro!"*
+<img src="https://dl.dropboxusercontent.com/s/pqpp0x62kqov683/sempre-faca-backup.png" alt="" title="Atenção! Sempre faça um backup da sua loja antes de realizar qualquer modificação!" />
 
 **Instalar usando o modgit:**
 
@@ -24,7 +24,7 @@ Adicionamos várias funcionalidades interessantes como associação automática 
 
 Baixe a ultima versão aqui do pacote Gamuza_ERP-xxx.tbz2 e descompacte o arquivo baixado para dentro do diretório principal do Magento
 
-Limpe todos os caches em Sistema -> Gerenciamento de Cache
+<img src="https://dl.dropboxusercontent.com/s/ir2vm6cyo3gl1v8/pos-instalacao.png" alt="Após a instalação, limpe os caches, rode a compilação, faça logout e login." title="Após a instalação, limpe os caches, rode a compilação, faça logout e login." />
 
 <h2>Conhecendo o módulo</h2>
 

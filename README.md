@@ -597,5 +597,5 @@ Adicionamos suporte a API JSON para deixar a sua integração muito mais leve.
 
 * Saiba mais clicando [aqui](https://github.com/gamuzabrasil/gamuza_jsonapi-magento)
 
-<img src="https://dl.dropboxusercontent.com/u/10273516/github/jsonapi/gamuza-jsonapi-box.png" alt="" title="Gamuza JSON API - Magento - Box" />
+<img src="https://dl.dropboxusercontent.com/s/2lgntr3opt28o46/gamuza-jsonapi-box.png" alt="" title="Gamuza JSON API - Magento - Box" />
 

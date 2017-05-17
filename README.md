@@ -588,14 +588,3 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
 
     $client->endSession ($session);
 
-
-<h1>Conheça também o nosso Módulo de API JSON</h1>
-
-**Agora ficou muito mais rápido trocar informações com o Magento!**
-
-Adicionamos suporte a API JSON para deixar a sua integração muito mais leve.
-
-* Saiba mais clicando [aqui](https://github.com/gamuzabrasil/gamuza_jsonapi-magento)
-
-<img src="https://dl.dropboxusercontent.com/s/2lgntr3opt28o46/gamuza-jsonapi-box.png" alt="" title="Gamuza JSON API - Magento - Box" />
-

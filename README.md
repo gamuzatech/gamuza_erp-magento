@@ -18,7 +18,7 @@ Adicionamos várias funcionalidades interessantes como associação automática 
 
     $ cd /path/to/magento
     $ modgit init
-    $ modgit add gamuza_erp https://github.com/gamuzabrasil/gamuza_erp-magento.git
+    $ modgit add gamuza_erp https://github.com/gamuzatech/gamuza_erp-magento.git
 
 **Instalação manual dos arquivos**
 

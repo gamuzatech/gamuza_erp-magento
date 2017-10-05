@@ -303,7 +303,7 @@ Ex: Filtrando listagem por data de criação e atualização, ordenando por data
                 'images' => array(
                     array(
                         'type' => 'thumbnail',
-                        'content' => base64_encode('/home/eneias/Desktop/produto.png'),
+                        'content' => base64_encode(file_get_contents('/home/eneias/Desktop/produto.png')),
                         'mime' => 'image/png',
                     ),
                 ),

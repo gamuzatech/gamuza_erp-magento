@@ -30,6 +30,9 @@ class Gamuza_ERP_Helper_Data
 extends Mage_Core_Helper_Abstract
 {
 
+const ATTRIBUTE_CATEGORY_ID = 'erp_category_id';
+const ATTRIBUTE_PRODUCT_ID  = 'erp_product_id';
+
 public function _setCreatedUpdatedAt (Mage_Core_Model_Abstract $object)
 {
     $core = Mage::getModel ('core/date');

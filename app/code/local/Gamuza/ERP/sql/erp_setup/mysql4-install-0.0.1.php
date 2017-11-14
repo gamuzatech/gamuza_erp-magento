@@ -111,15 +111,8 @@ SQLBLOCK;
 $installer = $this;
 $installer->startSetup ();
 
-$coreConfig = Mage::getModel ('core/config');
-
-$coreConfig->saveConfig ('api/config/charset',            'UTF-8');
-$coreConfig->saveConfig ('api/config/session_timeout',    '86400');
-$coreConfig->saveConfig ('api/config/compliance_wsi',     '1');
-$coreConfig->saveConfig ('api/config/wsdl_cache_enabled', '1');
-
-addOrUpdateAttribute ($installer, 'catalog_category', 'erp_CodigoCategoriaProduto', 'Codigo Categoria Produto');
-addOrUpdateAttribute ($installer, 'catalog_product',  'erp_CodigoProduto',          'Codigo Produto');
+addOrUpdateAttribute ($installer, 'catalog_category', 'erp_category_id', 'ID da Categoria para ERP');
+addOrUpdateAttribute ($installer, 'catalog_product',  'erp_product_id',  'ID do Produto para ERP');
 
 addCreatedUpdatedAt ($installer, 'core_website',     'website_id > 0');
 addCreatedUpdatedAt ($installer, 'core_store_group', 'group_id > 0');
@@ -127,6 +120,16 @@ addCreatedUpdatedAt ($installer, 'core_store',       'store_id > 0');
 addCreatedUpdatedAt ($installer, 'customer_group',   'customer_group_id > 0');
 
 addERPProductsAssociations ($installer, 'gamuza_erp_products_associations');
+
+$coreConfig = Mage::getModel ('core/config');
+
+$coreConfig->saveConfig ('api/config/charset',            'UTF-8');
+$coreConfig->saveConfig ('api/config/session_timeout',    '86400');
+$coreConfig->saveConfig ('api/config/compliance_wsi',     '1');
+$coreConfig->saveConfig ('api/config/wsdl_cache_enabled', '1');
+
+$coreConfig->saveConfig ('erp/attributes/category_id', Gamuza_ERP_Helper_Data::ATTRIBUTE_CATEGORY_ID);
+$coreConfig->saveConfig ('erp/attributes/product_id',  Gamuza_ERP_Helper_Data::ATTRIBUTE_PRODUCT_ID);
 
 $installer->endSetup ();
 

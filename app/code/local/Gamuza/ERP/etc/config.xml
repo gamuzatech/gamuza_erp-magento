@@ -100,8 +100,8 @@
                 <use_default>4</use_default>
             </attributes_set>
             <attributes>
-                <category_id>erp_CodigoCategoriaProduto</category_id>
-                <product_id>erp_CodigoProduto</product_id>
+                <category_id>erp_category_id</category_id>
+                <product_id>erp_product_id</product_id>
             </attributes>
         </erp>
         <api>
